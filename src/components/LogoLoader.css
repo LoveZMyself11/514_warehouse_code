@@ -1,0 +1,166 @@
+/* 院徽加载动画样式 */
+
+.logo-loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f4ff 100%);
+  z-index: 9999;
+}
+
+.logo-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* SVG 容器 */
+.logo-loader-svg {
+  filter: drop-shadow(0 4px 12px rgba(0, 102, 204, 0.15));
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+/* 路径描边动画 */
+.logo-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawPath 2s ease-in-out forwards infinite;
+}
+
+/* 不同路径的延迟，形成依次绘制效果 */
+.logo-path-1 {
+  animation-delay: 0s;
+}
+
+.logo-path-2 {
+  animation-delay: 0.2s;
+}
+
+.logo-path-3 {
+  animation-delay: 0.4s;
+}
+
+.logo-path-4 {
+  animation-delay: 0.6s;
+}
+
+.logo-path-5 {
+  animation-delay: 0.8s;
+}
+
+/* 中心点脉冲动画 */
+.logo-center-dot {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* 加载文字 */
+.logo-loader-text {
+  font-size: 16px;
+  color: #0066CC;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* 加载点动画 */
+.logo-loader-dots {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.logo-loader-dots span {
+  animation: dotBounce 1.4s infinite ease-in-out;
+  opacity: 0;
+}
+
+.logo-loader-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.logo-loader-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.logo-loader-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ============ 动画定义 ============ */
+
+/* 描边绘制动画 */
+@keyframes drawPath {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* 整体悬浮动画 */
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 中心点脉冲 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.5);
+  }
+}
+
+/* 点点跳动 */
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .logo-loader-text {
+    font-size: 14px;
+  }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .logo-loader-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .logo-loader-text {
+    color: #4d9fff;
+  }
+}

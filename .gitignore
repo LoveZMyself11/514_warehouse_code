@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.codex-artifact-runtime/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.*.local
+.DS_Store
+outputs/**/previews/
+outputs/**/*.inspect.ndjson

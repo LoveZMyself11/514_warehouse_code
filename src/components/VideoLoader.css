@@ -1,0 +1,141 @@
+/* 视频加载动画样式 */
+
+.video-loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f4ff 100%);
+  z-index: 9999;
+}
+
+.video-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 20px;
+}
+
+/* 视频容器 */
+.video-loader-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 20px rgba(0, 102, 204, 0.2));
+}
+
+/* 视频元素 */
+.video-loader-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* 加载文字 */
+.video-loader-text {
+  font-size: 18px;
+  color: #0066CC;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+/* 加载点动画 */
+.video-loader-dots {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.video-loader-dots span {
+  animation: dotBounce 1.4s infinite ease-in-out;
+  opacity: 0;
+}
+
+.video-loader-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.video-loader-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.video-loader-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* 点点跳动动画 */
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .video-loader-wrapper {
+    max-width: 240px;
+  }
+
+  .video-loader-text {
+    font-size: 16px;
+  }
+
+  .video-loader-content {
+    gap: 24px;
+  }
+}
+
+/* 小屏手机 */
+@media (max-width: 480px) {
+  .video-loader-wrapper {
+    max-width: 200px;
+  }
+
+  .video-loader-text {
+    font-size: 14px;
+  }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .video-loader-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .video-loader-text {
+    color: #4d9fff;
+  }
+}
+
+/* 横屏适配 */
+@media (orientation: landscape) and (max-height: 600px) {
+  .video-loader-wrapper {
+    max-width: 180px;
+  }
+
+  .video-loader-content {
+    gap: 16px;
+  }
+
+  .video-loader-text {
+    font-size: 14px;
+  }
+}

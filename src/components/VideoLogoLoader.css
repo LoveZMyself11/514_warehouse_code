@@ -1,0 +1,174 @@
+/* 视频加载动画样式 */
+
+.video-logo-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f4ff 100%);
+  z-index: 9999;
+  transition: opacity 0.3s ease-out;
+}
+
+.video-logo-loader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-logo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  max-width: 90%;
+}
+
+/* 视频容器 */
+.logo-video {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(0, 102, 204, 0.12));
+  border-radius: 50%;
+}
+
+/* 降级静态图 */
+.logo-fallback {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+}
+
+/* 加载文字 */
+.video-loader-text {
+  font-size: 18px;
+  color: #0066CC;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* 加载点动画 */
+.video-loader-dots {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.video-loader-dots span {
+  animation: dotBounce 1.4s infinite ease-in-out;
+  opacity: 0;
+}
+
+.video-loader-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.video-loader-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.video-loader-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* 进度条（可选） */
+.loader-progress {
+  width: 200px;
+  height: 3px;
+  background: rgba(0, 102, 204, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #0066CC, #00AAFF);
+  border-radius: 2px;
+  animation: progressMove 2s ease-in-out infinite;
+}
+
+/* ============ 动画定义 ============ */
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes progressMove {
+  0% {
+    width: 0%;
+    margin-left: 0;
+  }
+  50% {
+    width: 70%;
+    margin-left: 0;
+  }
+  100% {
+    width: 0%;
+    margin-left: 100%;
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .logo-video,
+  .logo-fallback {
+    width: 200px;
+    height: 200px;
+  }
+
+  .video-loader-text {
+    font-size: 16px;
+  }
+
+  .loader-progress {
+    width: 160px;
+  }
+}
+
+/* 小屏手机 */
+@media (max-width: 380px) {
+  .logo-video,
+  .logo-fallback {
+    width: 160px;
+    height: 160px;
+  }
+
+  .video-loader-text {
+    font-size: 14px;
+  }
+}
+
+/* 暗色模式 */
+@media (prefers-color-scheme: dark) {
+  .video-logo-loader {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  }
+
+  .video-loader-text {
+    color: #4d9fff;
+  }
+
+  .loader-progress {
+    background: rgba(77, 159, 255, 0.15);
+  }
+}
+
+/* 性能优化 */
+.logo-video {
+  will-change: transform;
+  transform: translateZ(0);
+}
