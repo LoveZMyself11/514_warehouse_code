@@ -163,7 +163,7 @@ npm run build
 3. `supabase/inventory_workflow.sql`
 4. `supabase/verify_setup.sql`（只读验证）
 
-然后在 Authentication > Providers 中启用 Email，并关闭公开注册（Allow new users to sign up）。在 Authentication > Users 中邀请或创建获准使用的账户；触发器会自动创建 `member` 用户资料，再由超级管理员在后台分配角色、部门和职位。在 Authentication > URL Configuration 中设置站点 URL。生产服务器需把未知路径回退到 `index.html`，确保直接访问 `/login` 时仍由 React Router 处理。
+然后在 Authentication > Providers 中启用 Email，并关闭公开注册（Allow new users to sign up）。在 Authentication > Users 中邀请或创建获准使用的账户；触发器会自动创建默认停用的 `member` 用户资料，再由超级管理员在后台分配角色、部门、职位并启用。在 Authentication > URL Configuration 中设置站点 URL。生产服务器需把未知路径回退到 `index.html`，确保直接访问 `/login` 时仍由 React Router 处理。
 
 首次启用时，在 Supabase Authentication 中创建第一个账号，再执行一次 SQL 将该账号对应的 `public.users.role` 改为 `super_admin`。不要在浏览器端使用 `service_role` 或 secret key。
 

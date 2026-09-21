@@ -44,7 +44,7 @@ BEGIN
     NEW.email,
     NEW.id,
     'member',
-    TRUE
+    FALSE
   )
   ON CONFLICT (auth_user_id) DO UPDATE SET email = EXCLUDED.email;
   RETURN NEW;
@@ -69,7 +69,7 @@ SELECT
   au.email,
   au.id,
   'member',
-  TRUE
+  FALSE
 FROM auth.users au
 WHERE NOT EXISTS (
   SELECT 1 FROM public.users u WHERE u.auth_user_id = au.id
